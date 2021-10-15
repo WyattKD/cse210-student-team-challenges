@@ -72,10 +72,9 @@ class Director:
             self.console.write(jumper_display)
             self.console.write(f"The word was \'{self.word}\' You Lose!")
             self.keep_playing = False
-        else:
+        elif not self.interact.check_win(self.blank_word):
             jumper_display = self.jumper.display_jumper()
             self.console.write(jumper_display)
-            if not self.interact.check_win(self.blank_word):
-                self.keep_playing = False
-                self.console.write(f"The word was \'{self.word}\' You Win!")
+            self.keep_playing = False
+            self.console.write(f"The word was \'{self.word}\' You Win!")
         
