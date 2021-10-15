@@ -25,9 +25,9 @@ class Director:
         self.interact = Interact()
         self.word_bank = WordBank()
         self.keep_playing = True
-        self.user_guess = ""
+        self.user_guess = Interact.get_guess()
         self.word = ""
-        self.blank_word = ""
+        self.blank_word = Interact.get_blank_word(self.word)
         
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -47,7 +47,7 @@ class Director:
             self (Director): An instance of Director.
         """
         self.word = self.word_bank.get_word()
-        self.blank_word = self.interact.convert_to_blanks(self.word)
+        self.blank_word = self.interact.get_blank_word(self.word)
         self.console.write(self.blank_word)
         jumper_display = self.jumper.display_jumper()
         self.console.write(jumper_display)
@@ -61,7 +61,7 @@ class Director:
             self (Director): An instance of Director.
         """
         if self.jumper.correct_guess(self.user_guess, self.word):
-            self.blank_word = self.interact.add_letter(self.user_guess)
+            self.blank_word = self.interact.add_letter(self.user_guess, self.blank_word, self.word)
         else:
             self.jumper.lives -= 1
 
@@ -75,5 +75,5 @@ class Director:
             self (Director): An instance of Director.
         """
 
-        self.keep_playing = self.interact.is_word_guessed()
+        self.keep_playing = self.interact.check_win()
         self.keep_playing = self.jumper.lives != 0
