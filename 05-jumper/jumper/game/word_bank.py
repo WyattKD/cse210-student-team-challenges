@@ -1,5 +1,8 @@
 import random
 class WordBank():
+    """
+    Randomly selects a word from a list of words
+    """
     def __init__(self):
         self.words = random.choice(['deception', 'snowman', 'closet', 'complete', 'kingpin', 'options', 'python', 'basketball', 'elephant', 'xylophone',
         'mother', 'cashew', 'mountain', 'toothbrush', 'tarantula', 'salesman', 'cobbler', 'chocolate', 'security', 'poltergeist',
