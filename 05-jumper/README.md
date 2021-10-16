@@ -35,3 +35,6 @@ root                    (project root folder)
 ## Authors
 ---
 * TODO: Add your names and emails here
+Courtney Mickelsen- lam15020@byui.edu
+Wyatt Dunlap- 
+Ethan Meeker- 

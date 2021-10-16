@@ -1,10 +1,15 @@
 class Jumper:
+    """ Handles the jumper display, keeps track of lives, and stores correct guesses. """
 
     def __init__(self):
+        """ Initialization method. """
+
         self.lives = 4
         self.guesses = []
-
+    
     def display_jumper(self):
+        """ Displays jumper graphics to the screen depending on the amount of lives left. """
+
         four_lives = "\n  ___   "
         three_lives = "\n /___\\"
         two_lives = "\n \\   /"
@@ -31,13 +36,13 @@ class Jumper:
         jumper_display += guess_line
 
         return jumper_display
+    
+    def correct_guess(self, guess, word):
+        """ Checks for correct guesses and stores for later use. """
 
-    def correct_guess(self, guess, word):  
         if (guess in word) and (guess not in self.guesses):  
             self.guesses.append(guess)
             return True
         else:
             self.guesses.append(guess)
             return False
-        
-
