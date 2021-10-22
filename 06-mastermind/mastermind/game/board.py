@@ -13,5 +13,5 @@ class Board:
         pass
 
     def add_name(self, name, player_number):
-        # Sets the names of player 1 and player 2, player number will either be 1 or 2
+        # Sets the names of player 1 and player 2, player_number will either be 1 or 2
         pass
