@@ -2,15 +2,16 @@ import random
 
 class Guess:
 
-    def __init__(self):
+    def __init__(self, digits):
         self._guess = []
         self._hint = []
+        self.digits = digits
         self._code = self._prepare()
 
     def _prepare(self):
         # creates the random 4 digit code between 1000 and 9999
         code = []
-        for i in range(1,5):
+        for i in range(1, self.digits + 1):
             if i == 1:
                 code.append(str(random.randint(1,9)))
             else:
@@ -36,16 +37,28 @@ class Guess:
 
     def check_win(self):
         # returns true if _guess matches _code
-        pass
+        guess = "".join(self._guess)
+        code = "".join(self._code)
+        if guess == code:
+            return True
+        else:
+            return False
 
-    def is_invalid(self):
+    def is_invalid(self, guess):
         # checks if the player's guess is a 4 digit number
-        pass
+        if len(guess) != self.digits:
+            return True
+        elif not guess.isdecimal():
+            return True
+        else:
+            return False
+        
+
 
     def get_guess(self):
         # converts the _guess list into a single string and returns it
-        pass
+        return "".join(self._guess)
 
     def get_hint(self):
         # converts the _hint list into a single string and returns it
-        pass
+        return "".join(self._hint)

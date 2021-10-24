@@ -29,7 +29,8 @@ class Director:
         self._console = Console()
         self._keep_playing = True
         self._roster = Roster()
-        self._guess = Guess()
+        self._digits = int(input("Enter the number of digits: "))
+        self._guess = Guess(self._digits)
 
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -56,8 +57,8 @@ class Director:
             # Passes the player names to the board so that it can display the player names
             self._board.add_name(name, n + 1)
         # Sets both players guesses and hints to be blank
-        self._board.apply("----", "****")
-        self._board.apply("----", "****")
+        self._board.apply("-" * self._digits, "*" * self._digits)
+        self._board.apply("-" * self._digits, "*" * self._digits)
     def _get_inputs(self):
         """Gets the inputs at the beginning of each round of play. In this case,
         that means getting the move from the current player.
@@ -71,10 +72,10 @@ class Director:
         # Get next player's move
         player = self._roster.get_current()
         self._console.write(f"{player.get_name()}'s turn:")
-        guess = self._console.read(self, "What is your guess? ")
+        guess = self._console.read("What is your guess? ")
         # Loops until the player enters a 4 digit number
         while self._guess.is_invalid(guess):
-            guess = self._console.read(self, "Please enter a 4 digit number: ")
+            guess = self._console.read(f"Please enter a {self._digits} digit number: ")
         # Sets the guess and hint variable based on the user's guess
         self._guess.set_guess(guess)
         self._guess.set_hint()
