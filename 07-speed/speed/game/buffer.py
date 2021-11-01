@@ -9,6 +9,8 @@ class Buffer(Actor):
         self.set_position(position)
         self.set_text(f"")
 
-    def print_letter(self, letter):
+    def update_buffer(self, letter):
+        text = self.get_text()
         if letter != None:
-            print(letter)
+            text += str(letter)
+        self.set_text(text)
