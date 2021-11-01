@@ -2,9 +2,9 @@ from time import sleep
 
 import raylibpy
 from game import constants
-from game.food import Food
+from game.word import Word
 from game.score_board import ScoreBoard
-from game.snake import Snake
+from game.buffer import Buffer
 
 class Director:
     """A code template for a person who directs the game. The responsibility of 
@@ -28,12 +28,11 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
-        self._food = Food()
         self._input_service = input_service
         self._keep_playing = True
         self._output_service = output_service
         self._score_board = ScoreBoard()
-        self._snake = Snake()
+        self._buffer = Buffer()
         
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -42,7 +41,7 @@ class Director:
             self (Director): an instance of Director.
         """
         print("Starting game...")
-        self._output_service.open_window("Snake")
+        self._output_service.open_window("Speed")
 
         while self._keep_playing:
             self._get_inputs()
@@ -88,55 +87,3 @@ class Director:
         self._output_service.draw_actors(self._snake.get_all())
         self._output_service.draw_actor(self._score_board)
         self._output_service.flush_buffer()
-
-    def _handle_body_collision(self):
-        """Handles collisions between the snake's head and body. Stops the game 
-        if there is one.
-
-        Args:
-            self (Director): An instance of Director.
-        """
-        head = self._snake.get_head()
-        body = self._snake.get_collidable_segments()
-        for segment in body:
-            if head.get_position().equals(segment.get_position()):
-                self._keep_playing = False
-                break
-
-    def _is_collision(self, first, second):
-        x1 = first.get_position().get_x()
-        y1 = first.get_position().get_y()
-        width1 = first.get_width()
-        height1 = first.get_height()
-
-        rectangle1 = raylibpy.Rectangle(x1, y1, width1, height1)
-
-        x2 = second.get_position().get_x()
-        y2 = second.get_position().get_y()
-        width2 = first.get_width()
-        height2 = first.get_height()
-
-        rectangle2 = raylibpy.Rectangle(x2, y2, width2, height2)
-
-        return raylibpy.check_collision_recs(rectangle1, rectangle2)
-
-    def _handle_food_collision(self):
-        """Handles collisions between the snake's head and the food. Grows the 
-        snake, updates the score and moves the food if there is one.
-
-        Args:
-            self (Director): An instance of Director.
-        """
-        head = self._snake.get_head()
-        if self._is_collision(head, self._food):
-            # get the amount the food is worth
-            points = self._food.get_points()
-
-            # grow the tail by that much
-            self._snake.grow_tail(points)
-
-            # add to the score
-            self._score_board.add_points(points)
-
-            # get a new food
-            self._food.reset() 
