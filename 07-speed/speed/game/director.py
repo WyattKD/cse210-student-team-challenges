@@ -2,7 +2,7 @@ from time import sleep
 
 import raylibpy
 from game import constants
-from game.word import Word
+# from game.word import Word
 from game.score_board import ScoreBoard
 from game.buffer import Buffer
 
@@ -60,8 +60,8 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        direction = self._input_service.get_direction()
-        self._snake.turn_head(direction)
+        letter = self._input_service.get_letter()
+        self._buffer.print_letter(letter)
 
     def _do_updates(self):
         """Updates the important game information for each round of play. In 
@@ -70,9 +70,7 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        self._snake.move()
-        self._handle_body_collision()
-        self._handle_food_collision()
+        pass
         
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -83,7 +81,5 @@ class Director:
             self (Director): An instance of Director.
         """
         self._output_service.clear_screen()
-        self._output_service.draw_actor(self._food)
-        self._output_service.draw_actors(self._snake.get_all())
-        self._output_service.draw_actor(self._score_board)
+        self._output_service.draw_actor(self._buffer)
         self._output_service.flush_buffer()

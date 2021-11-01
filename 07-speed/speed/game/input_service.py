@@ -21,6 +21,11 @@ class InputService:
             self (InputService): An instance of InputService.
         """
         self._current = Point(1, 0)
+        
+    def get_letter(self):
+        key_int = raylibpy.get_key_pressed()
+        if key_int != -1:
+            return chr(key_int)
 
     def window_should_close(self):
         """
