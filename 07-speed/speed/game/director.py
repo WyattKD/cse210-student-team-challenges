@@ -61,7 +61,7 @@ class Director:
             self (Director): An instance of Director.
         """
         letter = self._input_service.get_letter()
-        self._buffer.print_letter(letter)
+        self._buffer.update_buffer(letter)
 
     def _do_updates(self):
         """Updates the important game information for each round of play. In 
