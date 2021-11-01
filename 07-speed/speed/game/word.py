@@ -7,6 +7,8 @@ class Food(Actor):
 
     def __init__(self):
         self.reset()
+        self._position = Point(constants.MAX_X - 1, random.randint(25, 374))
+        self._velocity = Point(0, -5)
         self._width = constants.DEFAULT_SQUARE_LENGTH
         self._height = constants.DEFAULT_SQUARE_LENGTH
     
