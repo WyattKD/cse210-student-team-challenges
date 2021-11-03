@@ -4,7 +4,10 @@ from game import constants
 from game.actor import Actor
 from game.point import Point
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ff46d4c616f16f110eae0d8fecec875b4c3393a2
 class Word(Actor):
 
     def __init__(self):

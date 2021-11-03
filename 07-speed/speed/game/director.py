@@ -3,7 +3,7 @@ import random
 import raylibpy
 from game.word import Word
 from game import constants
-# from game.word import Word
+from game.word import Word
 from game.score_board import ScoreBoard
 from game.buffer import Buffer
 
@@ -34,8 +34,12 @@ class Director:
         self._output_service = output_service
         self._score_board = ScoreBoard()
         self._buffer = Buffer()
+<<<<<<< HEAD
         self._word = Word()
         
+=======
+        self._words = []
+>>>>>>> ff46d4c616f16f110eae0d8fecec875b4c3393a2
     def start_game(self):
         """Starts the game loop to control the sequence of play.
         
@@ -72,8 +76,14 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+<<<<<<< HEAD
         self._word.get_word
         
+=======
+        self.generate_new_word()
+        self.remove_matches()
+        self.remove_lost_words()
+>>>>>>> ff46d4c616f16f110eae0d8fecec875b4c3393a2
         
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -85,5 +95,32 @@ class Director:
         """
         self._output_service.clear_screen()
         self._output_service.draw_actor(self._buffer)
+<<<<<<< HEAD
         self._output_service.flush_buffer()
         self._output_service.draw_actor(self._word)
+=======
+        self._output_service.draw_actor(self._score_board)
+        self._output_service.draw_actors(self._words)
+        self._output_service.flush_buffer()
+
+    def remove_matches(self):
+        words_to_remove = []
+        for word in self._words:
+            if self._buffer.check_for_match(word):
+                words_to_remove.append(word)
+                # add points to score
+        for word in words_to_remove:
+            self._words.remove(word)
+
+    def remove_lost_words(self):
+        words_to_remove = []
+        for word in self._words:
+            if word.is_off_screen():
+                words_to_remove.append(word)
+                # subtract points from score
+        for word in words_to_remove:
+            self._words.remove(word)
+
+    def generate_new_word(self):
+        pass
+>>>>>>> ff46d4c616f16f110eae0d8fecec875b4c3393a2
