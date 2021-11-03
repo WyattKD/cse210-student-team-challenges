@@ -70,6 +70,7 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+        self.generate_new_word()
         self.remove_matches()
         self.remove_lost_words()
         
@@ -102,3 +103,6 @@ class Director:
                 self._score_board.add_points(-5)
         for word in words_to_remove:
             self._words.remove(word)
+
+    def generate_new_word(self):
+        pass
