@@ -1,6 +1,7 @@
 from time import sleep
-
+import random
 import raylibpy
+from game.word import Word
 from game import constants
 # from game.word import Word
 from game.score_board import ScoreBoard
@@ -33,6 +34,7 @@ class Director:
         self._output_service = output_service
         self._score_board = ScoreBoard()
         self._buffer = Buffer()
+        self._word = Word()
         
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -70,7 +72,8 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        pass
+        self._word.get_word
+        
         
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -83,3 +86,4 @@ class Director:
         self._output_service.clear_screen()
         self._output_service.draw_actor(self._buffer)
         self._output_service.flush_buffer()
+        self._output_service.draw_actor(self._word)
