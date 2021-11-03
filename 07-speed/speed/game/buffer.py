@@ -16,5 +16,10 @@ class Buffer(Actor):
             text += str(letter)
         self.set_text(text)
 
-    def check_for_match(self):
-        self.set_text(f"")
+    def check_for_match(self, word):
+        text = self.get_text()
+        if word in text:
+            self.set_text(f"")
+            return True
+        else:
+            return False

@@ -33,7 +33,7 @@ class Director:
         self._output_service = output_service
         self._score_board = ScoreBoard()
         self._buffer = Buffer()
-        
+        self._words = []
     def start_game(self):
         """Starts the game loop to control the sequence of play.
         
@@ -70,7 +70,8 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        pass
+        self.remove_matches()
+        self.remove_lost_words()
         
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -84,3 +85,20 @@ class Director:
         self._output_service.draw_actor(self._buffer)
         self._output_service.draw_actor(self._score_board)
         self._output_service.flush_buffer()
+
+    def remove_matches(self):
+        words_to_remove = []
+        for word in self._words:
+            if self._buffer.check_for_match(word):
+                words_to_remove.append(word)
+        for word in words_to_remove:
+            self._words.remove(word)
+
+    def remove_lost_words(self):
+        words_to_remove = []
+        for word in self._words:
+            if word.is_off_screen():
+                words_to_remove.append(word)
+                self._score_board.add_points(-5)
+        for word in words_to_remove:
+            self._words.remove(word)
