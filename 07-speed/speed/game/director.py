@@ -93,6 +93,7 @@ class Director:
         for word in self._words:
             if self._buffer.check_for_match(word):
                 words_to_remove.append(word)
+                # add points to score
         for word in words_to_remove:
             self._words.remove(word)
 
@@ -101,7 +102,7 @@ class Director:
         for word in self._words:
             if word.is_off_screen():
                 words_to_remove.append(word)
-                self._score_board.add_points(-5)
+                # subtract points from score
         for word in words_to_remove:
             self._words.remove(word)
 
