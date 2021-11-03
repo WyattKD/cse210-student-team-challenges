@@ -1,9 +1,11 @@
 import random
+import time
 from game import constants
 from game.actor import Actor
 from game.point import Point
 
-class Food(Actor):
+
+class Word(Actor):
 
     def __init__(self):
         self.reset()
@@ -15,8 +17,12 @@ class Food(Actor):
     def get_points(self):
         return self._points
 
+    def get_word(self, text):
+        text = random.choice(open("words.txt").readline())
+        self.set_text(text)
+    
     def reset(self):
-        self._points = random.randint(1, 9)
+        self._points = 4
         x = random.randint(1, 599)
         y = random.randint(1, 399)
         position = Point(x, y)
