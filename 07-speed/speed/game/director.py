@@ -122,7 +122,7 @@ class Director:
                 word.starting_five()
             self._words.append(word)
             self._start_time = round(time())
-            self._time_to_wait = random.random() + random.randint(0,2)
+            self._time_to_wait = random.random() + random.randint(0,1)
 
 
     def move_words(self):

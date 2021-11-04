@@ -1,7 +1,7 @@
 from game.actor import Actor
 from game.point import Point
 from game.constants import *
-
+from time import time
 class Buffer(Actor):
 
     def __init__(self):
@@ -12,7 +12,9 @@ class Buffer(Actor):
 
     def update_buffer(self, letter):
         text = self.get_text()
-        if letter != None:
+        if letter == "backspace":
+            text = text[:-1]
+        elif letter != None:
             text += str(letter)
         self.set_text(text)
 

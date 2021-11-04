@@ -24,7 +24,9 @@ class InputService:
         
     def get_letter(self):
         key_int = raylibpy.get_key_pressed()
-        if key_int != -1:
+        if raylibpy.is_key_pressed(raylibpy.KEY_BACKSPACE):
+            return "backspace"
+        elif key_int != -1:
             return chr(key_int)
 
     def window_should_close(self):
