@@ -34,12 +34,9 @@ class Director:
         self._output_service = output_service
         self._score_board = ScoreBoard()
         self._buffer = Buffer()
-<<<<<<< HEAD
         self._word = Word()
-        
-=======
         self._words = []
->>>>>>> ff46d4c616f16f110eae0d8fecec875b4c3393a2
+
     def start_game(self):
         """Starts the game loop to control the sequence of play.
         
@@ -76,14 +73,11 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-<<<<<<< HEAD
-        self._word.get_word
-        
-=======
+
         self.generate_new_word()
         self.remove_matches()
         self.remove_lost_words()
->>>>>>> ff46d4c616f16f110eae0d8fecec875b4c3393a2
+
         
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -95,10 +89,9 @@ class Director:
         """
         self._output_service.clear_screen()
         self._output_service.draw_actor(self._buffer)
-<<<<<<< HEAD
+
         self._output_service.flush_buffer()
         self._output_service.draw_actor(self._word)
-=======
         self._output_service.draw_actor(self._score_board)
         self._output_service.draw_actors(self._words)
         self._output_service.flush_buffer()
@@ -123,4 +116,4 @@ class Director:
 
     def generate_new_word(self):
         pass
->>>>>>> ff46d4c616f16f110eae0d8fecec875b4c3393a2
+
