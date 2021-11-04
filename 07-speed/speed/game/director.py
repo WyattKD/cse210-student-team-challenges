@@ -1,3 +1,4 @@
+from time import time
 from time import sleep
 import random
 import raylibpy
@@ -36,6 +37,8 @@ class Director:
         self._buffer = Buffer()
         self._word = Word()
         self._words = []
+        self._start_time = round(time())
+        self._time_to_wait = 5
 
     def start_game(self):
         """Starts the game loop to control the sequence of play.
@@ -45,7 +48,8 @@ class Director:
         """
         print("Starting game...")
         self._output_service.open_window("Speed")
-
+        for i in range(5):
+            self.generate_new_word(True)
         while self._keep_playing:
             self._get_inputs()
             self._do_updates()
@@ -74,10 +78,10 @@ class Director:
             self (Director): An instance of Director.
         """
 
-        self.generate_new_word()
+        self.generate_new_word(False)
         self.remove_matches()
         self.remove_lost_words()
-
+        self.move_words()
         
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -89,9 +93,6 @@ class Director:
         """
         self._output_service.clear_screen()
         self._output_service.draw_actor(self._buffer)
-
-        self._output_service.flush_buffer()
-        self._output_service.draw_actor(self._word)
         self._output_service.draw_actor(self._score_board)
         self._output_service.draw_actors(self._words)
         self._output_service.flush_buffer()
@@ -114,6 +115,18 @@ class Director:
         for word in words_to_remove:
             self._words.remove(word)
 
-    def generate_new_word(self):
-        pass
+    def generate_new_word(self, override):
+        if round(time()) - self._start_time  >= self._time_to_wait or override:
+            word = Word()
+            if override:
+                word.starting_five()
+            self._words.append(word)
+            self._start_time = round(time())
+            self._time_to_wait = random.random() + random.randint(0,2)
+
+
+    def move_words(self):
+        for word in self._words:
+            word.move_next()
+
 

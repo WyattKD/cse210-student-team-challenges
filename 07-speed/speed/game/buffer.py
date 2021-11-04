@@ -17,8 +17,9 @@ class Buffer(Actor):
         self.set_text(text)
 
     def check_for_match(self, word):
-        text = self.get_text()
-        if word in text:
+        buffer_text = self.get_text()
+        word_text = word.get_text()
+        if word_text in buffer_text:
             self.set_text(f"")
             return True
         else:
