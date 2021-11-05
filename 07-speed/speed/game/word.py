@@ -36,6 +36,7 @@ class Word(Actor):
 
     def starting_five(self):
         self._position = Point(random.randint(constants.MAX_X/2, constants.MAX_X-1), random.randint(0 + constants.DEFAULT_FONT_SIZE, constants.MAX_Y - constants.DEFAULT_FONT_SIZE))
+        self._velocity = Point(-1, random.randint(-1, 1))
 
     def reset(self):
         self._position = Point(constants.MAX_X - 1, random.randint(0 + constants.DEFAULT_FONT_SIZE, constants.MAX_Y - constants.DEFAULT_FONT_SIZE))

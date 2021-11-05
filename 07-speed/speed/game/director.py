@@ -38,7 +38,7 @@ class Director:
         self._word = Word()
         self._words = []
         self._start_time = round(time())
-        self._time_to_wait = 5
+        self._time_to_wait = 10
 
     def start_game(self):
         """Starts the game loop to control the sequence of play.
