@@ -40,4 +40,6 @@ root                    (project root folder)
 
 ## Authors
 ---
-* # TODO: Add names and emails here
+* Wyatt Dunlap
+  Ethan Meeker
+  Courtney Mickelsen
