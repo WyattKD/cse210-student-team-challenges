@@ -41,5 +41,5 @@ root                    (project root folder)
 ## Authors
 ---
 * Wyatt Dunlap
-  Ethan Meeker
-  Courtney Mickelsen
+* Ethan Meeker
+* Courtney Mickelsen
