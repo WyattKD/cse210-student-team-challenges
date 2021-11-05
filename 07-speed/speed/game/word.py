@@ -35,10 +35,10 @@ class Word(Actor):
         self.set_velocity(Point(dx, dy))
 
     def starting_five(self):
-        self._position = Point(random.randint(300, 599), random.randint(25, 374))
+        self._position = Point(random.randint(constants.MAX_X/2, constants.MAX_X-1), random.randint(0 + constants.DEFAULT_FONT_SIZE, constants.MAX_Y - constants.DEFAULT_FONT_SIZE))
 
     def reset(self):
-        self._position = Point(constants.MAX_X - 1, random.randint(25, 374))
+        self._position = Point(constants.MAX_X - 1, random.randint(0 + constants.DEFAULT_FONT_SIZE, constants.MAX_Y - constants.DEFAULT_FONT_SIZE))
         self._velocity = Point(random.randint(-2, -1), random.randint(-1, 1))
         self._width = constants.DEFAULT_SQUARE_LENGTH * 5
         self._height = constants.DEFAULT_SQUARE_LENGTH
