@@ -128,5 +128,6 @@ class Director:
     def move_words(self):
         for word in self._words:
             word.move_next()
+            word.screen_bounce()
 
 
