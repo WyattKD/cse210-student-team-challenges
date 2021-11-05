@@ -49,7 +49,7 @@ class Director:
         print("Starting game...")
         self._output_service.open_window("Speed")
         for i in range(5):
-            self.generate_new_word(True)
+            self._generate_new_word(True)
         while self._keep_playing:
             self._get_inputs()
             self._do_updates()
@@ -78,10 +78,10 @@ class Director:
             self (Director): An instance of Director.
         """
 
-        self.generate_new_word(False)
-        self.remove_matches()
-        self.remove_lost_words()
-        self.move_words()
+        self._generate_new_word(False)
+        self._remove_matches()
+        self._remove_lost_words()
+        self._move_words()
         
     def _do_outputs(self):
         """Outputs the important game information for each round of play. In 
@@ -97,7 +97,7 @@ class Director:
         self._output_service.draw_actors(self._words)
         self._output_service.flush_buffer()
 
-    def remove_matches(self):
+    def _remove_matches(self):
         words_to_remove = []
         for word in self._words:
             if self._buffer.check_for_match(word):
@@ -106,7 +106,7 @@ class Director:
         for word in words_to_remove:
             self._words.remove(word)
 
-    def remove_lost_words(self):
+    def _remove_lost_words(self):
         words_to_remove = []
         for word in self._words:
             if word.is_off_screen():
@@ -115,7 +115,7 @@ class Director:
         for word in words_to_remove:
             self._words.remove(word)
 
-    def generate_new_word(self, override):
+    def _generate_new_word(self, override):
         if round(time()) - self._start_time  >= self._time_to_wait or override:
             word = Word()
             if override:
@@ -125,7 +125,7 @@ class Director:
             self._time_to_wait = random.random() + random.randint(0,1)
 
 
-    def move_words(self):
+    def _move_words(self):
         for word in self._words:
             word.move_next()
             word.screen_bounce()
