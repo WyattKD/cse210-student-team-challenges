@@ -11,7 +11,7 @@ class Word(Actor):
         self.get_word()
     
     def get_points(self):
-        text = self.get_text
+        text = self.get_text()
         points = len(text)
         return points
 
